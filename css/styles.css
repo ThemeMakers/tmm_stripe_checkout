@@ -1,0 +1,53 @@
+.sel {
+	height: 26px;
+	position: relative;
+	display: inline-block;
+	margin-right: 2px;
+	vertical-align: top;
+}
+
+	.sel select {
+		border: 1px solid #D5D6D6;
+		color: #8F9194;
+		display: inline-block;
+		height: 26px;
+		margin: 0;
+		padding: 4px 10px;
+		-webkit-border-radius: 3px;
+				border-radius: 3px;
+		 -webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+				box-sizing: border-box;
+		-webkit-transition: all 0.25s linear 0s;
+				transition: all 0.25s linear 0s;
+	}
+
+	.sel select {
+		background: #fff;
+		cursor: pointer;
+		width: 100%;
+		-webkit-box-shadow: none;
+				box-shadow: none;
+		-webkit-appearance: none;
+		   -moz-appearance: none;
+				appearance: none;
+	}
+
+	.sel select:hover {
+		background: #fff;
+		border-color: #f2a500;
+	}
+
+	.sel:after {
+		content: '';
+		width: 22px;
+		height: 20px;
+		top: 1px;
+		right: 7px;
+		display: block;
+		background: url(images/select-pointer.png) 0 0 no-repeat;
+		position: absolute;
+		pointer-events: none;
+	}
+	
+	.sel:hover:after {background-position: 0 -24px;}
