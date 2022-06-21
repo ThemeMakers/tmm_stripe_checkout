@@ -211,7 +211,7 @@ class StripeAdmin {
     /**
      * Create table for payment history
      */
-    public static function AmsPluginInstall() {
+    public static function TmmPluginInstall() {
         global $wpdb;
         $wpdb->query('
 			CREATE TABLE IF NOT EXISTS `tmm_stripe_checkout_history` (

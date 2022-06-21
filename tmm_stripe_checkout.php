@@ -98,7 +98,7 @@ add_action('init', 'tmm_stripe_init', 2);
 /**
  * Create admin menus
  */
-function AmsStripeAdminMenu() {
+function TmmStripeAdminMenu() {
 
     $config = StripeConfig::getInstance();
     $objectStripeAdmin=new StripeAdmin();
@@ -108,13 +108,13 @@ function AmsStripeAdminMenu() {
     add_submenu_page($config->getItem('tmm_plugin_id'), __('Help Center', $config->getItem('tmm_plugin_id')), __('Help Center', $config->getItem('tmm_plugin_id')), 'level_5', $config->getItem('tmm_plugin_help_center_id'), array($objectStripeAdmin, 'StripeIntigrationsHelpCenter'));
 }
 
-add_action('admin_menu', 'AmsStripeAdminMenu');
+add_action('admin_menu', 'TmmStripeAdminMenu');
 
 
 /**
  * Create table for payment history on plugin activation
  */
 $objectStripe=new StripeAdmin();
-register_activation_hook(__FILE__, array($objectStripe, 'AmsPluginInstall'));
+register_activation_hook(__FILE__, array($objectStripe, 'TmmPluginInstall'));
 
 ob_clean();

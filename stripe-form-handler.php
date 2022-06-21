@@ -11,7 +11,7 @@ require_once TMM_STRIPE_PLUGIN_PATH . '/stripe/init.php';
 
 if (isset($_POST['stripe_func']) && $_POST['stripe_func'] === 'start') {
 
-    StripeApi::AmsStartStripeCheckout();
+    StripeApi::TmmStartStripeCheckout();
 
 } else if (isset($_GET['func']) && $_GET['func'] == 'confirm' && isset($_GET['token'])) {
 

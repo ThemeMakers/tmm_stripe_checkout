@@ -9,7 +9,7 @@ class StripeApi
 	/**
 	 * Start express checkout
 	 */
-	static function AmsStartStripeCheckout()
+	static function TmmStartStripeCheckout()
 	{
 		/* define options */
 		$config = StripeConfig::getInstance();
