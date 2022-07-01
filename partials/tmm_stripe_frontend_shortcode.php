@@ -28,7 +28,7 @@ if (!empty($stripeSecretKey) && empty(!$sripePublishKey)){
 			<input type="image" value="" src="<?php echo $config->getItem('checkout_button_src'); ?>" alt="button" />
 		<?php } ?>
 	<?php } else { ?>
-	    <input type="submit" value="<?php _e('Pay with Stripe', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" />
+	    <input type="submit" value="<?php esc_html_e('Pay with Stripe', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" />
 	<?php } ?>
 </form>
 <?php } ?>

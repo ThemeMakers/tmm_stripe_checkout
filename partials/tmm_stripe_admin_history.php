@@ -5,16 +5,16 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Auto Moto Scout Stripe Checkout - Payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></h2>
+	<h2><?php esc_html_e('CarDealer Stripe Checkout - Payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></h2>
 
 	<?php if (isset($config_saved) && $config_saved === TRUE) { ?>
 		<div class="updated" id="message">
-			<p><strong><?php _e('Payment updated.', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></strong></p>
+			<p><strong><?php esc_html_e('Payment updated.', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></strong></p>
 		</div>
 	<?php } ?>
 
 	<p>
-		<?php _e('Here you can see all stripe payment made on your website.', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+		<?php esc_html_e('Here you can see all stripe payment made on your website.', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 	</p>
 
 
@@ -58,7 +58,7 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 			<form method="post" action="<?php echo $config->getItem('plugin_history_url'); ?>" style="display: inline-block;">
 
                 <select name="y">
-                    <option value="-1" selected="selected"><?php _e('Show all years', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
+                    <option value="-1" selected="selected"><?php esc_html_e('Show all years', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
                     <?php for ($y = intval(date('Y')); $y >= 2014; $y--): ?>
                         <option <?php if ($year == $y): ?>selected=""<?php endif; ?> value="<?php echo $y ?>"><?php echo $y ?></option>
                     <?php endfor; ?>
@@ -82,13 +82,13 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 				?>
 
                 <select name="m">
-                    <option value="-1" selected="selected"><?php _e('Show all months', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
+                    <option value="-1" selected="selected"><?php esc_html_e('Show all months', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
                     <?php for ($m = 0; $m < 12; $m++): ?>
                         <option <?php if ($month == $m): ?>selected=""<?php endif; ?> value="<?php echo $m ?>"><?php echo $monthes[$m] ?></option>
                     <?php endfor; ?>
                 </select>
 
-				<input type="submit" value="<?php _e('Filter', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="button" id="post-query-submit" name="">
+				<input type="submit" value="<?php esc_html_e('Filter', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="button" id="post-query-submit" name="">
 			</form>
 
 		</div>
@@ -96,22 +96,22 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 		<div class="tablenav-pages">
 
 			<form method="post" action="<?php echo $config->getItem('plugin_history_url') ?>" style="display: inline-block;">
-				<input type="text" value="<?php echo isset($user_email) ? $user_email : '' ?>" name="user_email" placeholder="<?php _e('enter user email', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>">
-				<input type="submit" value="<?php _e('Search', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="button">
+				<input type="text" value="<?php echo isset($user_email) ? $user_email : '' ?>" name="user_email" placeholder="<?php esc_html_e('enter user email', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>">
+				<input type="submit" value="<?php esc_html_e('Search', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="button">
 			</form>
 
 			<?php if (isset($rows_count) && $limit < $rows_count): ?>
-				<span class="displaying-num"><?php echo $rows_count ?> <?php _e('items', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></span>
+				<span class="displaying-num"><?php echo $rows_count ?> <?php esc_html_e('items', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></span>
 				<span class="pagination-links">
-					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged=1'.$orderby : '#') ?>" title="<?php _e('Go to the first page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="first-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">«</a>
-					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged='.($pagenum>1 ? ($pagenum - 1) : 1).$orderby : '#') ?>" title="<?php _e('Go to the previous page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="prev-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">‹</a>
+					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged=1'.$orderby : '#') ?>" title="<?php esc_html_e('Go to the first page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="first-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">«</a>
+					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged='.($pagenum>1 ? ($pagenum - 1) : 1).$orderby : '#') ?>" title="<?php esc_html_e('Go to the previous page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="prev-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">‹</a>
 					<span class="paging-input">
 						<form style="display: inline-block;" method="post" action="<?php echo $config->getItem('plugin_history_url').$orderby; ?>">
-							<input type="text" size="1" value="<?php echo $pagenum ?>" name="paged" title="<?php _e('Current page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="current-page"> <?php _e('of', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?> <span class="total-pages"><?php echo ceil($rows_count / $limit) ?></span>
+							<input type="text" size="1" value="<?php echo $pagenum ?>" name="paged" title="<?php esc_html_e('Current page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="current-page"> <?php esc_html_e('of', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?> <span class="total-pages"><?php echo ceil($rows_count / $limit) ?></span>
 						</form>
 					</span>
-					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.($pagenum + 1).$orderby : '#') ?>" title="<?php _e('Go to the next page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="next-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">›</a>
-					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.(ceil($rows_count / $limit)).$orderby : '#') ?>" title="<?php _e('Go to the last page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="last-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">»</a>
+					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.($pagenum + 1).$orderby : '#') ?>" title="<?php esc_html_e('Go to the next page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="next-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">›</a>
+					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.(ceil($rows_count / $limit)).$orderby : '#') ?>" title="<?php esc_html_e('Go to the last page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="last-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">»</a>
 				</span>
 			<?php endif; ?>
 		</div>
@@ -123,34 +123,34 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 		<thead>
 			<tr>
 				<th width="20" class="manage-column">
-					<?php _e('ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['status_link'] ?>"><?php _e('Status', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['status_link'] ?>"><?php esc_html_e('Status', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['amount_link'] ?>"><?php _e('Amount', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['amount_link'] ?>"><?php esc_html_e('Amount', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<?php _e('Currency', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Currency', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<?php _e('Package ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Package ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<?php _e('Description', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Description', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['firstname_link'] ?>"><?php _e('Firstname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['firstname_link'] ?>"><?php esc_html_e('Firstname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['lastname_link'] ?>"><?php _e('Lastname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['lastname_link'] ?>"><?php esc_html_e('Lastname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['email_link'] ?>"><?php _e('E-mail', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['email_link'] ?>"><?php esc_html_e('E-mail', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['date_link'] ?>"><?php _e('Date', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['date_link'] ?>"><?php esc_html_e('Date', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 			</tr>
 		</thead>
@@ -158,34 +158,34 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 		<tfoot>
 			<tr>
 				<th width="20" class="manage-column">
-					<?php _e('ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['status_link'] ?>"><?php _e('Status', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['status_link'] ?>"><?php esc_html_e('Status', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['amount_link'] ?>"><?php _e('Amount', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['amount_link'] ?>"><?php esc_html_e('Amount', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<?php _e('Currency', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Currency', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<?php _e('Package ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Package ID', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<?php _e('Description', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
+					<?php esc_html_e('Description', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['firstname_link'] ?>"><?php _e('Firstname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['firstname_link'] ?>"><?php esc_html_e('Firstname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['lastname_link'] ?>"><?php _e('Lastname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['lastname_link'] ?>"><?php esc_html_e('Lastname', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['email_link'] ?>"><?php _e('E-mail', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['email_link'] ?>"><?php esc_html_e('E-mail', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 				<th class="manage-column">
-					<a href="<?php echo $links['date_link'] ?>"><?php _e('Date', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+					<a href="<?php echo $links['date_link'] ?>"><?php esc_html_e('Date', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
 				</th>
 			</tr>
 		</tfoot>
@@ -227,8 +227,8 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 					<td class="username column-username">
 						<strong style="<?php echo $row->status == 'success' ? 'color:#339900;' : ''; ?>"><?php echo strtoupper($row->status); ?></strong><br />
 						<div class="row-actions">
-							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=edit&id=' . $row->id; ?>"><?php _e('Edit', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span> |
-							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=details&id=' . $row->id; ?>"><?php _e('View details', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span>
+							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=edit&id=' . $row->id; ?>"><?php esc_html_e('Edit', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span> |
+							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=details&id=' . $row->id; ?>"><?php esc_html_e('View details', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span>
 						</div>
 					</td>
 					<td class="role column-role" style="color:<?php if ($is_price_red): ?>red<?php else: ?>green<?php endif; ?>"><?php echo(number_format($row->amount, 2)); ?></td>
