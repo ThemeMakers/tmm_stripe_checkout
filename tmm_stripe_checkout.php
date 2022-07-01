@@ -5,7 +5,7 @@
  * Plugin URI: http://webtemplatemasters.com
  * Description: Integration of Stripe Checkout
  * Author: ThemeMakers
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: http://themeforest.net/user/ThemeMakers
  * Text Domain: tmm_stripe_checkout
  */
