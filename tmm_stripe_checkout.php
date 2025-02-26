@@ -5,7 +5,7 @@
  * Plugin URI: http://webtemplatemasters.com
  * Description: Integration of Stripe Checkout
  * Author: ThemeMakers
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author URI: http://themeforest.net/user/ThemeMakers
  * Text Domain: tmm_stripe_checkout
  */
@@ -19,7 +19,8 @@ require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeConfig.php';
 require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeShortcode.php';
 require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeAdmin.php';
 
-function tmm_stripe_init () {
+function tmm_stripe_init()
+{
 
     /* Set base configuration */
     $config = StripeConfig::getInstance();
@@ -39,7 +40,8 @@ function tmm_stripe_init () {
     $config->addItem('views_path', TMM_STRIPE_PLUGIN_PATH . '/partials/');
 
     // supported currencies
-    $config->addItem('supported_currencies',
+    $config->addItem(
+        'supported_currencies',
         array(
             'AUD',
             'BRL',
@@ -87,9 +89,8 @@ function tmm_stripe_init () {
 
 
     /* create shortcode for stripe*/
-    $objectStripeShortCode=new StripeShortcode();
+    $objectStripeShortCode = new StripeShortcode();
     add_shortcode('stripe', array($objectStripeShortCode, 'frontendIndex'));
-
 }
 
 add_action('init', 'tmm_stripe_init', 2);
@@ -98,10 +99,11 @@ add_action('init', 'tmm_stripe_init', 2);
 /**
  * Create admin menus
  */
-function TmmStripeAdminMenu() {
+function TmmStripeAdminMenu()
+{
 
     $config = StripeConfig::getInstance();
-    $objectStripeAdmin=new StripeAdmin();
+    $objectStripeAdmin = new StripeAdmin();
 
     add_menu_page($config->getItem('tmm_plugin_name'), $config->getItem('tmm_plugin_name'), 'level_5', $config->getItem('tmm_plugin_id'), array($objectStripeAdmin, 'StripeAdminConfiguration'), TMM_STRIPE_PLUGIN_URL . '/images/stripeicon.png');
     add_submenu_page($config->getItem('tmm_plugin_id'), __('Payments history', $config->getItem('tmm_plugin_id')), __('Payments history', $config->getItem('tmm_plugin_id')), 'level_5', $config->getItem('tmm_plugin_history_id'), array($objectStripeAdmin, 'StripeAdminHistory'));
@@ -114,7 +116,7 @@ add_action('admin_menu', 'TmmStripeAdminMenu');
 /**
  * Create table for payment history on plugin activation
  */
-$objectStripe=new StripeAdmin();
+$objectStripe = new StripeAdmin();
 register_activation_hook(__FILE__, array($objectStripe, 'TmmPluginInstall'));
 
 ob_clean();

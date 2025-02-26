@@ -1,12 +1,12 @@
-<?php if ( !defined('ABSPATH') ) exit; ?>
+<?php if (!defined('ABSPATH')) exit; ?>
 
 <div class="wrap">
   <h2><?php esc_html_e('CarDealer Stripe Checkout - Edit payment status', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></h2>
-  
+
   <p>
     <a href="<?php echo $config->getItem('plugin_history_url'); ?>" title="Back to the payments history">&laquo; <?php esc_html_e('Back to the payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
   </p>
-  
+
   <form method="post" action="<?php echo $config->getItem('plugin_history_url'); ?>">
     <table class="form-table">
       <tbody>
@@ -26,8 +26,8 @@
       <input type="hidden" name="id" value="<?php echo (int)$_GET['id']; ?>" />
       <input type="submit" value="Save" class="button-primary" />
     </p>
-  
-  <p>
-    <a href="<?php echo $config->getItem('plugin_history_url'); ?>" title="Back to the payments history">&laquo; <?php esc_html_e('Back to the payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
-  </p>
+
+    <p>
+      <a href="<?php echo $config->getItem('plugin_history_url'); ?>" title="Back to the payments history">&laquo; <?php esc_html_e('Back to the payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a>
+    </p>
 </div><!-- .wrap -->

@@ -1,8 +1,4 @@
-<?php
-if ( !defined('ABSPATH') ) exit;
-
-wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css');
-?>
+<?php if (!defined('ABSPATH')) exit; ?>
 
 <div class="wrap">
 	<h2><?php esc_html_e('CarDealer Stripe Checkout - Payments history', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></h2>
@@ -20,15 +16,15 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 
 	<?php
 	unset($_GET['page']);
-	
+
 	$orderby = '';
 	$orderdir = '&order=' .  (isset($_GET['order']) ? $_GET['order'] : 'DESC');
-	if(isset($_GET['orderby'])){
+	if (isset($_GET['orderby'])) {
 		$orderby .= '&orderby=' . $_GET['orderby'] . $orderdir;
 	}
-	
+
 	$paged = '&paged=' . (isset($_GET['paged']) ? (int) $_GET['paged'] : 1);
-			
+
 	//***
 	$links = array(
 		'status_link' => 'status',
@@ -38,17 +34,17 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 		'email_link' => 'email',
 		'date_link' => 'created',
 	);
-	
-	if(isset($order)){
-        if ($order == 'DESC') {
-            $_GET['order'] = 'ASC';
-        } else {
-            $_GET['order'] = 'DESC';
-        }
-    }
-	
+
+	if (isset($order)) {
+		if ($order == 'DESC') {
+			$_GET['order'] = 'ASC';
+		} else {
+			$_GET['order'] = 'DESC';
+		}
+	}
+
 	foreach ($links as $k => $v) {
-		$links[$k] = $config->getItem('plugin_history_url') . $paged. '&orderby=' . $v . '&order=' . $_GET['order'];
+		$links[$k] = $config->getItem('plugin_history_url') . $paged . '&orderby=' . $v . '&order=' . $_GET['order'];
 	}
 
 	?>
@@ -57,12 +53,12 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 		<div class="alignleft actions">
 			<form method="post" action="<?php echo $config->getItem('plugin_history_url'); ?>" style="display: inline-block;">
 
-                <select name="y">
-                    <option value="-1" selected="selected"><?php esc_html_e('Show all years', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
-                    <?php for ($y = intval(date('Y')); $y >= 2014; $y--): ?>
-                        <option <?php if ($year == $y): ?>selected=""<?php endif; ?> value="<?php echo $y ?>"><?php echo $y ?></option>
-                    <?php endfor; ?>
-                </select>
+				<select name="y">
+					<option value="-1" selected="selected"><?php esc_html_e('Show all years', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
+					<?php for ($y = intval(date('Y')); $y >= 2014; $y--): ?>
+						<option <?php if ($year == $y): ?>selected="" <?php endif; ?> value="<?php echo $y ?>"><?php echo $y ?></option>
+					<?php endfor; ?>
+				</select>
 
 				<?php
 				$monthes = array(
@@ -81,12 +77,12 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 				);
 				?>
 
-                <select name="m">
-                    <option value="-1" selected="selected"><?php esc_html_e('Show all months', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
-                    <?php for ($m = 0; $m < 12; $m++): ?>
-                        <option <?php if ($month == $m): ?>selected=""<?php endif; ?> value="<?php echo $m ?>"><?php echo $monthes[$m] ?></option>
-                    <?php endfor; ?>
-                </select>
+				<select name="m">
+					<option value="-1" selected="selected"><?php esc_html_e('Show all months', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></option>
+					<?php for ($m = 0; $m < 12; $m++): ?>
+						<option <?php if ($month == $m): ?>selected="" <?php endif; ?> value="<?php echo $m ?>"><?php echo $monthes[$m] ?></option>
+					<?php endfor; ?>
+				</select>
 
 				<input type="submit" value="<?php esc_html_e('Filter', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="button" id="post-query-submit" name="">
 			</form>
@@ -103,15 +99,15 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 			<?php if (isset($rows_count) && $limit < $rows_count): ?>
 				<span class="displaying-num"><?php echo $rows_count ?> <?php esc_html_e('items', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></span>
 				<span class="pagination-links">
-					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged=1'.$orderby : '#') ?>" title="<?php esc_html_e('Go to the first page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="first-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">«</a>
-					<a href="<?php echo($pagenum > 1 ? $config->getItem('plugin_history_url').'&paged='.($pagenum>1 ? ($pagenum - 1) : 1).$orderby : '#') ?>" title="<?php esc_html_e('Go to the previous page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="prev-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">‹</a>
+					<a href="<?php echo ($pagenum > 1 ? $config->getItem('plugin_history_url') . '&paged=1' . $orderby : '#') ?>" title="<?php esc_html_e('Go to the first page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="first-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">«</a>
+					<a href="<?php echo ($pagenum > 1 ? $config->getItem('plugin_history_url') . '&paged=' . ($pagenum > 1 ? ($pagenum - 1) : 1) . $orderby : '#') ?>" title="<?php esc_html_e('Go to the previous page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="prev-page <?php if ($pagenum == 1): ?>disabled<?php endif; ?>">‹</a>
 					<span class="paging-input">
-						<form style="display: inline-block;" method="post" action="<?php echo $config->getItem('plugin_history_url').$orderby; ?>">
+						<form style="display: inline-block;" method="post" action="<?php echo $config->getItem('plugin_history_url') . $orderby; ?>">
 							<input type="text" size="1" value="<?php echo $pagenum ?>" name="paged" title="<?php esc_html_e('Current page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="current-page"> <?php esc_html_e('of', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?> <span class="total-pages"><?php echo ceil($rows_count / $limit) ?></span>
 						</form>
 					</span>
-					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.($pagenum + 1).$orderby : '#') ?>" title="<?php esc_html_e('Go to the next page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="next-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">›</a>
-					<a href="<?php echo($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url').'&paged='.(ceil($rows_count / $limit)).$orderby : '#') ?>" title="<?php esc_html_e('Go to the last page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="last-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">»</a>
+					<a href="<?php echo ($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url') . '&paged=' . ($pagenum + 1) . $orderby : '#') ?>" title="<?php esc_html_e('Go to the next page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="next-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">›</a>
+					<a href="<?php echo ($pagenum < ceil($rows_count / $limit) ? $config->getItem('plugin_history_url') . '&paged=' . (ceil($rows_count / $limit)) . $orderby : '#') ?>" title="<?php esc_html_e('Go to the last page', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?>" class="last-page <?php if ($pagenum >= ceil($rows_count / $limit)): ?>disabled<?php endif; ?>">»</a>
 				</span>
 			<?php endif; ?>
 		</div>
@@ -196,51 +192,51 @@ wp_enqueue_style("thememakers_stripe", TMM_STRIPE_PLUGIN_URL . '/css/styles.css'
 			$feature_packets = TMM_Cardealer_User::get_features_packets();
 			?>
 			<?php
-            if(isset($rows)){
-            foreach ($rows as $kk => $row) { ?>
-				<?php
-				$is_price_red = false;
-				$is_key_red = false;
-				if ((float) @$roles[$row->packet_id]['packet_price'] !== (float) $row->amount) {
-					if ((float) @$feature_packets[$row->packet_id]['packet_price'] !== (float) $row->amount) {
-						$is_price_red = true;
+			if (isset($rows)) {
+				foreach ($rows as $kk => $row) { ?>
+					<?php
+					$is_price_red = false;
+					$is_key_red = false;
+					if ((float) @$roles[$row->packet_id]['packet_price'] !== (float) $row->amount) {
+						if ((float) @$feature_packets[$row->packet_id]['packet_price'] !== (float) $row->amount) {
+							$is_price_red = true;
+						}
 					}
-				}
-				//***
-				if (@!isset($roles[$row->packet_id])) {
-					if (@!isset($feature_packets[$row->packet_id])) {
-						$is_key_red = true;
+					//***
+					if (@!isset($roles[$row->packet_id])) {
+						if (@!isset($feature_packets[$row->packet_id])) {
+							$is_key_red = true;
+						}
 					}
-				}
-				if(time() != current_time('timestamp')){
-					$row->created += current_time('timestamp') - time();
-				}
-                $rowStatyle='';
-                if ($row->status=='success'){
-                    $rowStatyle='background:#00800021';
-                }else if ($row->status=='failed'){
-                    $rowStatyle='background:#ff00001f';
-                }
-				?>
-				<tr class="alternate" style="<?=$rowStatyle?>">
-					<td width="20"><?php echo $row->id; ?></td>
-					<td class="username column-username">
-						<strong style="<?php echo $row->status == 'success' ? 'color:#339900;' : ''; ?>"><?php echo strtoupper($row->status); ?></strong><br />
-						<div class="row-actions">
-							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=edit&id=' . $row->id; ?>"><?php esc_html_e('Edit', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span> |
-							<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=details&id=' . $row->id; ?>"><?php esc_html_e('View details', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span>
-						</div>
-					</td>
-					<td class="role column-role" style="color:<?php if ($is_price_red): ?>red<?php else: ?>green<?php endif; ?>"><?php echo(number_format($row->amount, 2)); ?></td>
-					<td class="role column-role"><?php echo $row->currency; ?></td>
-					<td class="role column-role" style="color: <?php if ($is_key_red): ?>red<?php else: ?>green<?php endif; ?>;"><?php echo $row->packet_id; ?></td>
-					<td class="role column-role"><?php echo $row->description; ?></td>
-					<td class="role column-role"><?php echo $row->firstname; ?></td>
-					<td class="role column-role"><?php echo $row->lastname; ?></td>
-					<td class="role column-role"><?php echo $row->email; ?></td>
-					<td class="role column-role"><?php echo date('Y-m-d H:i', $row->created); ?></td>
+					if (time() != current_time('timestamp')) {
+						$row->created += current_time('timestamp') - time();
+					}
+					$rowStatyle = '';
+					if ($row->status == 'success') {
+						$rowStatyle = 'background:#00800021';
+					} else if ($row->status == 'failed') {
+						$rowStatyle = 'background:#ff00001f';
+					}
+					?>
+					<tr class="alternate" style="<?= $rowStatyle ?>">
+						<td width="20"><?php echo $row->id; ?></td>
+						<td class="username column-username">
+							<strong style="<?php echo $row->status == 'success' ? 'color:#339900;' : ''; ?>"><?php echo strtoupper($row->status); ?></strong><br />
+							<div class="row-actions">
+								<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=edit&id=' . $row->id; ?>"><?php esc_html_e('Edit', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span> |
+								<span class="edit"><a href="<?php echo $config->getItem('plugin_history_url') . '&action=details&id=' . $row->id; ?>"><?php esc_html_e('View details', TMM_STRIPE_PLUGIN_TEXTDOMAIN) ?></a></span>
+							</div>
+						</td>
+						<td class="role column-role" style="color:<?php if ($is_price_red): ?>red<?php else: ?>green<?php endif; ?>"><?php echo (number_format($row->amount, 2)); ?></td>
+						<td class="role column-role"><?php echo $row->currency; ?></td>
+						<td class="role column-role" style="color: <?php if ($is_key_red): ?>red<?php else: ?>green<?php endif; ?>;"><?php echo $row->packet_id; ?></td>
+						<td class="role column-role"><?php echo $row->description; ?></td>
+						<td class="role column-role"><?php echo $row->firstname; ?></td>
+						<td class="role column-role"><?php echo $row->lastname; ?></td>
+						<td class="role column-role"><?php echo $row->email; ?></td>
+						<td class="role column-role"><?php echo date('Y-m-d H:i', $row->created); ?></td>
 				<?php }
-                }?>
+			} ?>
 		</tbody>
 	</table>
 </div><!-- .wrap -->
