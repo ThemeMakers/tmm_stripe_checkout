@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: ThemeMakers Stripe Checkout
- * Plugin URI: http://webtemplatemasters.com
+ * Plugin URI: https://webtemplatemasters.com
  * Description: Integration of Stripe Checkout
  * Author: ThemeMakers
  * Version: 1.0.3
- * Author URI: http://themeforest.net/user/ThemeMakers
+ * Author URI: https://themeforest.net/user/ThemeMakers
  * Text Domain: tmm_stripe_checkout
  * Domain Path: /languages/
  */
@@ -15,6 +15,16 @@ ob_start();
 define('TMM_STRIPE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
 define('TMM_STRIPE_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('TMM_STRIPE_PLUGIN_TEXTDOMAIN', 'tmm_stripe_checkout');
+
+if (!function_exists('tmm_stripe_load_textdomain')) {
+    function tmm_stripe_load_textdomain()
+    {
+        load_plugin_textdomain(TMM_STRIPE_PLUGIN_TEXTDOMAIN, false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    }
+}
+
+add_action('plugins_loaded', 'tmm_stripe_load_textdomain');
+
 
 require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeConfig.php';
 require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeShortcode.php';
