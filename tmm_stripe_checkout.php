@@ -5,14 +5,15 @@
  * Plugin URI: http://webtemplatemasters.com
  * Description: Integration of Stripe Checkout
  * Author: ThemeMakers
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author URI: http://themeforest.net/user/ThemeMakers
  * Text Domain: tmm_stripe_checkout
+ * Domain Path: /languages/
  */
 
 ob_start();
-define('TMM_STRIPE_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('TMM_STRIPE_PLUGIN_PATH', dirname(__FILE__));
+define('TMM_STRIPE_PLUGIN_URL', trailingslashit(plugin_dir_url(__FILE__)));
+define('TMM_STRIPE_PLUGIN_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('TMM_STRIPE_PLUGIN_TEXTDOMAIN', 'tmm_stripe_checkout');
 
 require_once TMM_STRIPE_PLUGIN_PATH . '/classes/StripeConfig.php';
